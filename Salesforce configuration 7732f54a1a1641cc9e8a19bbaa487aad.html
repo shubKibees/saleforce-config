@@ -1,0 +1,833 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Salesforce configuration</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="7732f54a-1a16-41cc-9e8a-19bbaa487aad" class="page sans"><header><h1 class="page-title">Salesforce configuration</h1><p class="page-description"></p></header><div class="page-body"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Login Detail</summary><div class="indented"><ul id="4d056d72-023b-4c5f-8bd9-b6b553aab233" class="bulleted-list"><li style="list-style-type:disc">Go to “<mark class="highlight-yellow"><a href="https://mc.login.exacttarget.com/hub-cas/login">https://mc.login.exacttarget.com/hub-cas/login</a></mark>”</li></ul><ul id="ebbebd8b-b512-44e7-a071-3536a96841dc" class="bulleted-list"><li style="list-style-type:disc">enter username, password. given bellow
+<mark class="highlight-pink">username</mark>: <a href="mailto:Anupriya.saxena@canon.co.in">Anupriya.saxena@canon.co.in</a>
+<mark class="highlight-pink">password</mark>: <a href="mailto:December@2022">December@2022</a></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"> How to extract lead in CSV.</summary><div class="indented"><p id="9ba34d03-a9e7-4cef-bffe-0e47fdbc847c" class="">
+</p><ul id="03cc5433-0378-4924-a859-a4c244326b09" class="bulleted-list"><li style="list-style-type:disc">Go to the top left corner, hover over Home icon and find <mark class="highlight-orange">Email Studio
+
+</mark><figure id="3d0ac8bd-72d8-4c03-b289-01f1516b7906" class="image"><a href="Salesforce%20configuration%207732f54a1a1641cc9e8a19bbaa487aad/img_1.png"><img style="width:672px" src="Salesforce%20configuration%207732f54a1a1641cc9e8a19bbaa487aad/img_1.png"/></a></figure><p id="1cdbf737-44ef-45fb-bf04-ee1caedf3258" class="">
+</p><p id="6863fdde-e66d-4682-91c2-123bde6880a1" class="">
+</p></li></ul><ul id="b32b2923-6046-4903-8540-0706c16dab2f" class="bulleted-list"><li style="list-style-type:disc">then find <mark class="highlight-orange">Data Ext. (tab)</mark> on the page and click on it. it will show you the list of databases.
+<figure id="e78e6930-4154-481b-96ad-24492d536458" class="image"><a href="Salesforce%20configuration%207732f54a1a1641cc9e8a19bbaa487aad/img_2.png"><img style="width:1560px" src="Salesforce%20configuration%207732f54a1a1641cc9e8a19bbaa487aad/img_2.png"/></a></figure><p id="0e562582-de4f-4821-84ff-c2ad1dd3e93e" class="">
+</p></li></ul><ul id="2122b285-8fce-42be-8655-4a5f0e3db315" class="bulleted-list"><li style="list-style-type:disc"> Select the database you want to see or <mark class="highlight-teal">extract lead. 
+</mark><mark class="highlight-default">example: you can select the database name “Enquiry_Form_MFD” for MFD website
+
+</mark></li></ul><figure id="e33d99d8-1c45-4a98-8d88-98fb6b3b533c" class="image"><a href="Salesforce%20configuration%207732f54a1a1641cc9e8a19bbaa487aad/img_3.png"><img style="width:959px" src="Salesforce%20configuration%207732f54a1a1641cc9e8a19bbaa487aad/img_3.png"/></a><figcaption>
+</figcaption></figure><ul id="1f2cd67a-740f-420c-b317-e4db2d8540ed" class="bulleted-list"><li style="list-style-type:disc">For extracting data, find <mark class="highlight-orange">Records (tab)</mark><mark class="highlight-default">, then go to Export button
+ </mark><figure id="42ca4272-1814-4fe3-bc11-82dd94fef6df" class="image"><a href="Salesforce%20configuration%207732f54a1a1641cc9e8a19bbaa487aad/img_4.png"><img style="width:1031px" src="Salesforce%20configuration%207732f54a1a1641cc9e8a19bbaa487aad/img_4.png"/></a></figure><p id="d16789f6-0783-45fa-b36d-780885f88bdd" class="">
+</p></li></ul><p id="12829775-3b61-4edc-bb5d-250e120e34bf" class="">
+</p><ul id="e2443f3e-a606-425c-9d13-6ea5cf7c4981" class="bulleted-list"><li style="list-style-type:disc">It will open a pop-up form, select the Browser download checkbox —&gt; click Export button. it will save date in your local system
+<figure id="d2dad3ad-f07c-41e2-b586-b322d4b11bc7" class="image"><a href="Salesforce%20configuration%207732f54a1a1641cc9e8a19bbaa487aad/img_5.png"><img style="width:669px" src="Salesforce%20configuration%207732f54a1a1641cc9e8a19bbaa487aad/img_5.png"/></a></figure><p id="eb6abb64-ea93-4e59-a537-f7f4d89dc7fb" class="">
+</p><p id="6ff33872-1698-438e-8fac-f7d0887f85ca" class="">
+</p></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"> How to configure UTMS.</summary><div class="indented"><ul id="0c7f9521-80d5-4566-8cf2-c66f3e09f81c" class="bulleted-list"><li style="list-style-type:disc">You have to add hidden input to the form,
+</li></ul><pre id="adc816b1-0aee-4805-8098-d671a41e32e5" class="code"><code>&lt;input type=&quot;hidden&quot; id=&quot;utm_campaign&quot; name=&quot;utm_campaign&quot; value=&quot;&quot;&gt;
+&lt;input type=&quot;hidden&quot; id=&quot;utm_medium&quot; name=&quot;utm_medium&quot; value=&quot;&quot;&gt;
+&lt;input type=&quot;hidden&quot; id=&quot;utm_source&quot; name=&quot;utm_source&quot; value=&quot;&quot;&gt;</code></pre><ul id="093528d7-7b56-4997-9c35-eea7fd068c9e" class="bulleted-list"><li style="list-style-type:disc">Now you have to fill these input, by taking parameter value from url of that page.
+Example: late say you have a url with utm like given below
+
+    <mark class="highlight-blue">  </mark><mark class="highlight-blue"><a href="https://cloud.connect.canon.co.in/mfd/?utm_source=Google&amp;utm_medium=CPC&amp;utm_campaign=Search+ad&amp;utm_term=+">https://cloud.connect.canon.co.in/mfd/?</a></mark><mark class="highlight-yellow"><a href="https://cloud.connect.canon.co.in/mfd/?utm_source=Google&amp;utm_medium=CPC&amp;utm_campaign=Search+ad&amp;utm_term=+">utm_source</a></mark><mark class="highlight-blue"><a href="https://cloud.connect.canon.co.in/mfd/?utm_source=Google&amp;utm_medium=CPC&amp;utm_campaign=Search+ad&amp;utm_term=+">=Google&amp;</a></mark><mark class="highlight-yellow"><a href="https://cloud.connect.canon.co.in/mfd/?utm_source=Google&amp;utm_medium=CPC&amp;utm_campaign=Search+ad&amp;utm_term=+">utm_medium</a></mark><mark class="highlight-blue"><a href="https://cloud.connect.canon.co.in/mfd/?utm_source=Google&amp;utm_medium=CPC&amp;utm_campaign=Search+ad&amp;utm_term=+">=CPC&amp;</a></mark><mark class="highlight-yellow"><a href="https://cloud.connect.canon.co.in/mfd/?utm_source=Google&amp;utm_medium=CPC&amp;utm_campaign=Search+ad&amp;utm_term=+">utm_campaign</a></mark><mark class="highlight-blue"><a href="https://cloud.connect.canon.co.in/mfd/?utm_source=Google&amp;utm_medium=CPC&amp;utm_campaign=Search+ad&amp;utm_term=+">=Search+ad&amp;utm_term=+</a></mark><mark class="highlight-blue">
+</mark></li></ul><ul id="fa4b9317-aa0f-4b04-8f87-44634112eead" class="bulleted-list"><li style="list-style-type:disc">put value of utm parameter into those hidden input, using code given bellow.</li></ul><pre id="5afdd337-2075-4a7c-91d9-fcac9865aade" class="code"><code>function setUTM() {
+         const utmCampaign = getURLParameter(&#x27;utm_campaign&#x27;);
+         const utmMedium = getURLParameter(&#x27;utm_medium&#x27;);
+         const utmSource = getURLParameter(&#x27;utm_source&#x27;);
+         if (utmMedium &amp;&amp; utmSource) {
+            if (utmCampaign) {
+               document.getElementById(&#x27;utm_campaign&#x27;).value = utmCampaign;
+            } else {
+               document.getElementById(&#x27;utm_campaign&#x27;).value = &quot;&quot;;
+            }
+            document.getElementById(&#x27;utm_medium&#x27;).value = utmMedium;
+            document.getElementById(&#x27;utm_source&#x27;).value = utmSource;
+         }
+      }
+setUTM();</code></pre><ul id="ed3eb4a7-80ae-44d9-9bec-0ff5a5ef9979" class="bulleted-list"><li style="list-style-type:disc">at the end, create a input field in database for utm
+</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"> How to Add Date in lead.</summary><div class="indented"><ul id="a45ad848-6ed2-4ede-8be6-43fb4776478b" class="bulleted-list"><li style="list-style-type:disc">find code similar to the code given below in you microsite</li></ul><pre id="479ad5b7-b11c-4643-8f98-349a52ab9892" class="code"><code>%%[
+var @name, @mobile, @email, @state, @city, @industry, @product, @authorise, @newsletter
+var @currentDateTime
+SET @name = RequestParameter(&quot;name&quot;)
+SET @mobile = RequestParameter(&quot;mobile&quot;)
+SET @email = RequestParameter(&quot;email&quot;)
+SET @state = RequestParameter(&quot;state&quot;)
+SET @city = RequestParameter(&quot;city&quot;)
+SET @industry = RequestParameter(&quot;industry&quot;)
+SET @product = RequestParameter(&quot;product&quot;)
+SET @authorise = RequestParameter(&quot;authorise&quot;)
+SET @newsletter = RequestParameter(&quot;newsletters&quot;)
+SET @utm_campaign=RequestParameter(&quot;utm_campaign&quot;)
+SET @utm_medium=RequestParameter(&quot;utm_medium&quot;)
+SET @utm_source=RequestParameter(&quot;utm_source&quot;)
+SET @currentDateTime = Now()
+SET @SubmittedDate = SystemDateToLocalDate(Now())
+UpsertData(
+      &quot;Enquiry_Form_MFD&quot;,
+       1,
+      &quot;Name&quot;, @name,
+      &quot;Mobile_No&quot;, @mobile,
+      &quot;Email_Id&quot;, @email,
+      &quot;State&quot;, @state,
+      &quot;City&quot;, @city,
+      &quot;Industry&quot;, @industry,
+      &quot;Product&quot;, @product,
+      &quot;Authorise_OptIn&quot;, @authorise,
+      &quot;Newsletter_OptIn&quot;, @newsletter,
+      &quot;utm_source&quot;,@utm_source,
+      &quot;utm_medium&quot;,@utm_medium,
+      &quot;utm_campaign&quot;,@utm_campaign,
+      &quot;currentDateTime &quot;,@currentDateTime,
+      &quot;SubmittedDate&quot;,@SubmittedDate
+   )
+   
+]%%</code></pre><p id="09459fcc-a81b-442a-a098-ef0a9973cafc" class="">
+</p><p id="a53ce26c-e6c3-4b20-98e7-2948d98bd610" class="">
+</p><ul id="4500723d-f882-40be-b4d0-78c8e5df30a8" class="bulleted-list"><li style="list-style-type:disc">and add “<mark class="highlight-orange">SET @SubmittedDate = SystemDateToLocalDate(Now())</mark>” to you code, and also add ”<mark class="highlight-yellow">SubmittedDate&quot;,@SubmittedDate</mark> at the end of the code.</li></ul><p id="8eb9d637-e76d-4887-84e2-54ac39c5f5dd" class="">
+</p><p id="40180853-41f1-407c-bc64-f74aa2d9548f" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Validation of form.</summary><div class="indented"><ul id="410cf891-eebd-46a0-83f9-1e0bda14c63d" class="bulleted-list"><li style="list-style-type:disc">just add the below code, and add an extra parameter if you have in the form</li></ul><pre id="ec32b3a8-512f-4570-a1e4-ba9f6b31864d" class="code"><code> 
+      function validateData() {
+         var nameformate = /^[a-zA-Z\s]*$/;
+         var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
+         var phoneformat = /^\d{10}$/;
+
+         var name = document.getElementById(&#x27;name&#x27;).value;
+         var mobile = document.getElementById(&#x27;mobile&#x27;).value;
+         var state = document.getElementById(&#x27;state&#x27;).value;
+         var email = document.getElementById(&#x27;email&#x27;).value;
+         var city = document.getElementById(&#x27;city&#x27;).value;
+         var authoriseCheckbox = document.getElementById(&#x27;authorise&#x27;);
+         var newslettersCheckbox = document.getElementById(&#x27;newsletters&#x27;);
+
+         var isValid = true;
+         var errorMessage = &#x27;&#x27;;
+
+         switch (true) {
+            case name.length == 0 || !name.match(nameformate):
+               errorMessage += &quot;Please enter a valid name.\n&quot;;
+               isValid = false;
+               break;
+            case mobile.length == 0:
+               errorMessage += &quot;Please enter a mobile number.\n&quot;;
+               isValid = false;
+               break;
+            case !mobile.match(phoneformat):
+               errorMessage += &quot;Please enter a valid 10-digit mobile number.\n&quot;;
+               isValid = false;
+               break;
+            case state.length == 0:
+               errorMessage += &quot;Please select a state.\n&quot;;
+               isValid = false;
+               break;
+            case email.length == 0:
+               errorMessage += &quot;Please enter an email address.\n&quot;;
+               isValid = false;
+               break;
+            case !email.match(mailformat):
+               errorMessage += &quot;Please enter a valid email address.\n&quot;;
+               isValid = false;
+               break;
+            case city.length == 0 || !city.match(nameformate):
+               errorMessage += &quot;Please enter a valid city.\n&quot;;
+               isValid = false;
+               break;
+            case !authoriseCheckbox.checked:
+               errorMessage += &quot;Please agree to the terms and conditions.\n&quot;;
+               isValid = false;
+               break;
+            case !newslettersCheckbox.checked:
+               errorMessage += &quot;Please subscribe to newsletters.\n&quot;;
+               isValid = false;
+               break;
+         }
+
+         if (!isValid) {
+            return errorMessage;
+         } else {
+            return 1;
+         }
+
+         return isValid;
+      }</code></pre><p id="f8878cd4-4085-4820-8d24-b7aa3ff4cc64" class="">
+</p><p id="08d435f4-bd5d-4582-b9c0-d6e69deb561f" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">State and city implementation</summary><div class="indented"><p id="b0eaa7fe-0ace-49b7-bc8a-b791be874140" class="">
+</p><ul id="d2da4eee-3b60-47ab-8250-1e500524d7cc" class="bulleted-list"><li style="list-style-type:disc">To add the state and city, we are using javascript from asdc website, just add script given below 
+<mark class="highlight-yellow">&lt;script src=&quot;</mark><mark class="highlight-yellow"><a href="https://support.asdc.org.in/assets/js/statecity.js">https://support.asdc.org.in/assets/js/statecity.js</a></mark><mark class="highlight-yellow">&quot; defer&gt;&lt;/script&gt;</mark></li></ul><p id="f0d63d8e-1005-42df-9fc1-abcb64c1c976" class="">
+</p><ul id="67420526-61d1-4d04-8e65-ecf461482a41" class="bulleted-list"><li style="list-style-type:disc">also add ID in the form in HTML, like given below</li></ul><pre id="30c2bd68-fc72-441e-ae85-126a6e9d8671" class="code"><code>&lt;select class=&quot;form-control&quot; aria-label=&quot;form-field&quot; name=&quot;state&quot; id=&quot;state&quot; required&gt;
+                        &lt;option value=&quot;&quot;&gt;Select State&lt;/option&gt;
+                        &lt;/select&gt;
+&lt;select class=&quot;form-control&quot; aria-label=&quot;form-field&quot; aria-label=&quot;form-field&quot; name=&quot;city&quot; id=&quot;city&quot; required=&quot;&quot;&gt;
+                           &lt;option value=&quot;&quot;&gt;Select City&lt;/option&gt;
+                        &lt;/select&gt;
+</code></pre><p id="5c0e63ac-c712-420a-8d5d-54c2993351e3" class="">
+</p><p id="ddbf2e26-4362-4af3-8c1b-40a3931dfd77" class="">
+</p><ul id="72f589a9-80cd-4893-88dd-006d9f0e6382" class="bulleted-list"><li style="list-style-type:disc">we have add <mark class="highlight-yellow">id=”state” </mark><mark class="highlight-default">and </mark><mark class="highlight-yellow">id=”city” </mark><mark class="highlight-default">to the form field, using that our statecity.js script will recognize the position where state and city are need to add</mark></li></ul></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
